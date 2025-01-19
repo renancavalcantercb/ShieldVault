@@ -1,0 +1,12 @@
+[project]
+name = "uv-fastapi-example"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "argon2-cffi>=23.1.0",
+    "fastapi[standard]>=0.112.1",
+    "passlib[argon2]>=1.7.4",
+    "python-jose>=3.3.0",
+]
