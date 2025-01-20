@@ -19,3 +19,10 @@ class PasswordResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class PasswordUpdate(BaseModel):
+    service_name: Optional[str] = Field(None, example="Google")
+    username: Optional[str] = Field(None, example="user@gmail.com")
+    password: Optional[str] = Field(None, example="newstrongpassword123")
+    notes: Optional[str] = Field(None, example="Conta atualizada")
+    url: Optional[HttpUrl] = Field(None, example="https://new-url.com")
