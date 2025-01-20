@@ -26,12 +26,27 @@ def create_password(db: Session, user_id: int, password_data: PasswordCreate):
 def list_passwords(db: Session, user_id: int):
     return db.query(Password).filter(Password.user_id == user_id).all()
 
-def edit_password(db: Session, user_id: int, password_id: int, password_data: PasswordUpdate):
-    password = db.query(Password).filter(Password.id == password_id, Password.user_id == user_id).first()
+
+def get_password_by_id(db: Session, user_id: int, password_id: int):
+    return (
+        db.query(Password)
+        .filter(Password.user_id == user_id, Password.id == password_id)
+        .first()
+    )
+
+
+def edit_password(
+    db: Session, user_id: int, password_id: int, password_data: PasswordUpdate
+):
+    password = (
+        db.query(Password)
+        .filter(Password.id == password_id, Password.user_id == user_id)
+        .first()
+    )
 
     if not password:
         return None
-    
+
     update_data = password_data.model_dump(exclude_unset=True)
 
     if "password" in update_data:
